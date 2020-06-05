@@ -1,0 +1,90 @@
+<div class="container" style="margin-top: 50px;">
+  <app-alert [messag]='ms' [hidden]="ms==''"></app-alert>
+
+    <div class="row">
+        <div class="col-md-10">
+        <button (click)="OpenAddnew()">Add New <i class="fa fa-user-plus"></i></button>
+        <label>Sort By</label>
+        <select [(ngModel)]="sortBy">
+          <option *ngFor="let op of SortOptions">{{op}}</option>
+        </select>
+        <div class="card" [hidden]="hideAddnewModal" style="padding: 30px;">
+            <form>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="Newemp.name" name="name" id="inputEmail3" placeholder="Name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Salary</label>
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control" [(ngModel)]="Newemp.salary" name="salary" id="inputPassword3" placeholder="Salary">
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Age</label>
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" [(ngModel)]="Newemp.age" name="age" id="inputage" placeholder="Age">
+                    </div>
+                  </div>        
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary" (click)="AddNew(Newemp)">Save</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+          <table class="table table-striped">
+              <thead>
+                  <th></th>
+                  <th></th>
+                  <th>Emp ID</th>
+                  <th>Emp Name</th>
+                  <th>Emp Salary</th>
+                  <th>Emp Age</th>
+                  <th></th>
+              </thead>
+              <tbody>
+                  <tr [hidden]="hideEditnewModal">
+                    <th></th>
+                    <th></th>
+                    <td><input type="text" [(ngModel)]="editEmp.id" disabled></td>
+                    <td><input type="text" [(ngModel)]="editEmp.name"></td>
+                      <td><input type="number" [(ngModel)]="editEmp.salary"></td>
+                      <td><input type="number" [(ngModel)]="editEmp.age"></td>
+                      <th><button (click)="updateEmployee(editEmp.id, editEmp)">Update</button></th>
+                  </tr>
+                  <tr *ngFor = "let emp of emp | sort: sortBy">
+                      <td (click)="editEmployee(emp.id, emp)"><i class="fa fa-edit"></i></td>
+                      <td (click)="deleteEmployee(emp.id)"><i class="fa fa-trash"></i></td>
+                      <td>{{emp.id}}</td>
+                      <td>{{emp.employee_name||emp.name}}</td>
+                      <td>{{emp.employee_salary||emp.salary}}</td>
+                      <td>{{emp.employee_age||emp.age }}</td>
+                      <td><i class="fa fa-arrow-right"></i></td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+    </div>
+    </div>
+    
+    <div class="container" style="padding-top: 40px;display: block;">
+      <div class="row" >
+        <h2> Popular Courses </h2>
+        <select #course (change)="name = course.value">
+            <option value="Node JS">Node JS</option>
+            <option value="Typescript">Typescript</option>
+            <option value="Angular">Angular</option>
+            <option value="React JS">React JS</option>
+        </select>
+          &nbsp;
+          <button (click)="show=true">View Courses list</button>
+        <div *ngIf="show">
+            <app-courses  [cName]="name" (onRegister)="courseReg($event)"></app-courses>
+        </div>
+        <div *ngIf="message">{{message}}</div>
+
+      </div>
+    </div>

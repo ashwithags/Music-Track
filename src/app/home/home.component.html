@@ -1,0 +1,21 @@
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card" *ngFor="let track of trackList | sort:'rating'">
+                <div class="like">
+                    <span (click)="like(track)"><i class="fa fa-thumbs-up"></i>{{track.rating}}</span>
+                </div>
+                <div class="comment">
+                    <span (click)="commentOpenModal(track)"><i class="fa fa-comments"></i></span>
+                </div>
+                <div class="name">{{track.productName}}</div>
+                <div class="tracklink">
+                    <audio controls>
+                        <source src="{{track.imageUrl}}" type="audio/mpeg">
+                    </audio>
+                </div>
+                <div><span [routerLink]="['/single-track', track.trackId]"><i class="fa fa-arrow-right"></i></span></div>
+            </div>
+        </div>
+    </div>
+</div>

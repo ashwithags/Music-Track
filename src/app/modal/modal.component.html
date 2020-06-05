@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h4 class="modal-title">Comments</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <input id="dateOfBirth" class="form-control" [(ngModel)]="newComment" placeholder="Add your Comment" name="dp">
+        <button (click)="AddComment(newComment)">Add</button>
+      </div>
+    </div>
+  </form>
+  <div *ngFor="let tc of track.comments">
+    <p>{{tc.comment}}</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Close</button>
+</div>

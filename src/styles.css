@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+.fa-user-circle:before {
+    content: "\f2bd";
+    font-size: 40px;
+}
+.likeNreply a {
+    font-size: 12px;
+    padding-right: 10px;
+    color: #3c68e6 !important;
+}
+.fa.fa-thumbs-o-up {
+    font-size: 14px;
+}
+.comentSec {
+    border-bottom: 1px solid #eae4e4;
+    margin-bottom: 20px;
+}

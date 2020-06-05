@@ -1,0 +1,17 @@
+<table border="1" *ngIf="course.length>0">
+    <thead>
+        <tr>
+          <th>Course ID</th>
+          <th>Course Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr *ngFor="let c of course">
+         <td>{{c.courseId}}</td>
+         <td>{{c.courseName}}</td>
+         <td><button (click)="register(c.courseName)">Register</button></td>
+
+       </tr>
+     </tbody>
+   </table>

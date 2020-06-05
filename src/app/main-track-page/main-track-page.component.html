@@ -1,0 +1,48 @@
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="padding: 20px">
+                <div class="like">
+                    <span (click)="like(currentTrack)"><i class="fa fa-thumbs-up"></i>{{currentTrack.rating}}</span>
+                </div>
+                <div class="name"><b>{{currentTrack.productName}}</b></div>
+                <div class="tracklink" style="margin-bottom: 15px">
+                    <audio controls>
+                        <source src="{{currentTrack.imageUrl}}" type="audio/mpeg">
+                    </audio>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input id="dateOfBirth" class="form-control" [(ngModel)]="newComment"
+                                placeholder="Add your Comment" name="dp">
+                            <button (click)="AddComment(newComment)">Add</button>
+                        </div>
+                    </div>
+                </form>
+                <div *ngFor="let tc of currentTrack.comments" class="comentSec">
+                    <div style="margin-right: 30px;">
+                        <i class="fa fa-user-circle"></i> 
+                    </div>
+                    <div>
+                        <p> {{tc.comment}}</p>
+                        <p class="likeNreply"><i class="fa fa-thumbs-o-up" *ngIf="tc.ShowLikeIcon"> </i> <span *ngIf="tc.ShowLikeIcon" style="color: #7580ec;font-size: 13px;margin-right: 12px;"> {{tc.like}}</span>
+                            <a (click)="likeComment(tc)">Like</a><a (click)="replyonComment(tc)">Reply</a></p>
+                        <form  *ngIf="tc.showReply">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="reply" class="form-control" [(ngModel)]="ReplyCmt"
+                                        placeholder="Add your Comment" name="dp">
+                                    <button (click)="ReplyComment(tc)">Add</button>
+                                    <button (click)="CancelComment(tc)">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <button style="margin-left: 15px;margin-top: 10px;" routerLink="/home">Back</button>
+    </div>
+</div>
